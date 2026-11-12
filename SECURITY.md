@@ -21,8 +21,8 @@ Do not include real customer data, secrets or firmware you are not allowed to sh
 ## What to expect
 
 - We aim to acknowledge your report within **5 working days**.
-- We will keep you informed while we investigate and fix the issue.
-- Fixed versions are published as signed releases on this page. With your permission, we credit you in the release notes.
+- We aim to keep you informed during the investigation whenever there is a meaningful update.
+- Fixed versions are published as new releases in this repository, each with a signed checksum file. With your permission, we credit you in the release notes.
 
 ## Supported versions
 
@@ -33,14 +33,14 @@ Do not include real customer data, secrets or firmware you are not allowed to sh
 
 ## Verifying releases
 
-All releases are signed with the PAXECT release signing key:
+Each release includes a `SHA256SUMS` checksum file that is signed with the PAXECT release signing key:
 
 ```
 PAXECT Release Signing <PAXECT-Team@outlook.com>
 Fingerprint: F914 7E2E C87B B514 BCA5  D9F7 0C18 1E6D 1CFD B2A9
 ```
 
-Install only packages whose `SHA256SUMS` file has a good signature from this key. See the installation steps in the [README](README.md#install).
+Install only packages whose `SHA256SUMS` file has a good signature from this key and whose checksum matches (`sha256sum -c SHA256SUMS`). See the installation steps in the [README](README.md#install).
 
 ## Bundled third-party components
 

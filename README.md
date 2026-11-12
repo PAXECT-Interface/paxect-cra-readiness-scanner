@@ -2,13 +2,13 @@
 
 **Free local readiness scanner for the EU Cyber Resilience Act (CRA).**
 
-**No account. No cloud. No telemetry.** · [Download v0.1.0](../../releases/latest) · [Install and verify](#install) · [Security policy](SECURITY.md)
+**No account. No cloud. No telemetry.** · [Download the latest release](../../releases/latest) · [Install and verify](#install) · [Security policy](SECURITY.md)
 
-PAXECT CRA Readiness Scanner FREE helps manufacturers of products with digital elements see where their product stands before the CRA obligations apply. It scans firmware, Linux systems, Android apps and MCP server projects **on your own Ubuntu computer** and produces a clear HTML technical report with a software bill of materials (SBOM) and known vulnerabilities.
+PAXECT CRA Readiness Scanner FREE helps manufacturers of products with digital elements see where their product stands ahead of the main obligations of the CRA, which apply from 11 December 2027. It scans firmware, Linux systems, Android apps and MCP server projects **on your own Ubuntu computer** and produces a clear HTML technical report with the findings and the evidence behind them, including a software bill of materials (SBOM) and known vulnerabilities where the input type allows it.
 
-> **Free to use, not open source.** PAXECT FREE is distributed free of charge as a signed Ubuntu package under the [PAXECT FREE License Agreement](LICENSE.md). This repository contains documentation and release files only; the source code of PAXECT itself is not published. The bundled open-source components keep their own licenses — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+> **Free to use, not open source.** PAXECT FREE is distributed free of charge as an Ubuntu package with a signed checksum file, under the [PAXECT FREE License Agreement](LICENSE.md). This repository contains documentation and release files only; the source code of PAXECT itself is not published. The bundled open-source components keep their own licenses — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-**Your files never leave your computer.** Scan input is analysed inside an isolated sandbox without network access. Only public vulnerability databases are downloaded.
+**Your scan input is not uploaded anywhere.** It is analysed on your own computer inside an isolated sandbox without network access. Network access is only used to download public vulnerability databases and, for the SSH / SFTP input type, to read the device you choose to scan.
 
 ---
 
@@ -39,7 +39,7 @@ Download these four files from the [latest release](../../releases/latest) into 
 - `SHA256SUMS.asc`
 - `PAXECT_RELEASE_SIGNING_KEY.asc`
 
-Open a terminal in that folder and run:
+In the Files app, open the folder with the four files, right-click an empty area and choose **Open in Terminal**. Then run:
 
 ```bash
 # 1. Import the PAXECT release signing key and show its fingerprint
@@ -61,7 +61,7 @@ gpg --verify SHA256SUMS.asc SHA256SUMS      # must say: Good signature from "PAX
 sha256sum -c SHA256SUMS                     # must say: paxect-free_0.1.0_amd64.deb: OK
 ```
 
-gpg may also warn that the key is not certified with a trusted signature. That is normal for a newly imported key: the fingerprint check in step 1 is what proves the key is genuine.
+gpg may also warn that the key is not certified with a trusted signature. That is normal for a newly imported key. The signature only counts if the fingerprint in step 1 matched: that check confirms the key is the one PAXECT published here. Because the fingerprint is published in the same place as the key, you can also confirm it with PAXECT through a second channel (see About below).
 
 ```bash
 # 3. Install (apt also installs the required Ubuntu packages)
@@ -75,7 +75,7 @@ The first scan also downloads the vulnerability databases and can take a few min
 
 ## Update
 
-Download the new release files, verify them as above, then:
+Download the new release files and verify them as above. Then install the new package; replace `<new-version>` with the version in the file name you downloaded:
 
 ```bash
 sudo apt update
@@ -90,13 +90,13 @@ Your earlier reports are kept.
 sudo apt remove paxect-free
 ```
 
-Your reports and downloaded databases stay in `~/.local/share/paxect-free/`. Delete that folder yourself if you no longer need them.
+Your reports and downloaded databases stay in `~/.local/share/paxect-free/`. Delete that folder yourself if you no longer need them. Reports you saved to another location are not affected.
 
 ## Privacy and security
 
 - **Local only.** There is no account, no cloud service and no telemetry from PAXECT. Scan input is not uploaded anywhere.
-- **Sandboxed analysis.** The bundled scanners run in a [bubblewrap](https://github.com/containers/bubblewrap) sandbox: no network access during analysis, scan input read-only, no access to your home folder.
-- **Network use.** Network access is only used to download public vulnerability databases: Trivy from `mirror.gcr.io`, Grype from `grype.anchore.io`. Nothing from your scan input is sent. Measured details are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), section 6.
+- **Sandboxed analysis.** The bundled scanners run in a [bubblewrap](https://github.com/containers/bubblewrap) sandbox: no network access during analysis and the scan input is mounted read-only.
+- **Network use.** Network access is only used to download public vulnerability databases (Trivy from `mirror.gcr.io`, Grype from `grype.anchore.io`) and, for the SSH / SFTP input type, to read the device you choose to scan. Nothing from your scan input is sent. Measured details are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), section 6.
 - **Signed releases.** The checksum file (`SHA256SUMS`) of every release is signed with the PAXECT release key (fingerprint above); it covers the package checksum.
 - **Verified components.** The bundled scanner binaries were verified against their official upstream releases.
 
@@ -118,7 +118,7 @@ Regulation (EU) 2024/2847 sets cybersecurity requirements for products with digi
 Yes — PAXECT CRA Readiness Scanner FREE runs entirely on your own Ubuntu computer, without an account or cloud upload.
 
 **Does PAXECT FREE create an SBOM?**
-Yes. Each scan builds a software bill of materials of the scanned product and uses it to find known vulnerabilities. The report shows both.
+Yes, where the input type allows it. For firmware images, PAXECT FREE builds a software bill of materials (SBOM) of the scanned product and uses it to find known vulnerabilities; the report shows both. Reports for other input types contain the findings that apply to them, for example static security analysis and secret detection for MCP projects.
 
 **Does PAXECT FREE make my product compliant with the Cyber Resilience Act?**
 No. It is a readiness tool: it helps you find and document technical issues early. Compliance requires a full conformity assessment.
