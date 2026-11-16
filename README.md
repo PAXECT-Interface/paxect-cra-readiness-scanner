@@ -107,6 +107,8 @@ To report a security issue, see [SECURITY.md](SECURITY.md).
 - **Readiness, not certification.** PAXECT FREE shows technical findings that are relevant for CRA readiness. It does **not** certify a product, does not make a product compliant, and is not legal advice. Conformity assessment under the CRA remains the responsibility of the manufacturer.
 - Findings come from automated tools and public databases. They can contain false positives and cannot find every issue.
 - Firmware support in this release: images that contain a SquashFS file system.
+- MCP projects: static analysis of project files, including secret detection. Project code is not executed. No SBOM or CVE assessment is performed for MCP projects.
+- Some scan and report IDs (for example in Linux and SSH / SFTP reports) start with "cloud-". This is a naming prefix only. Scans run locally on your computer. The only network connections are the downloads of public vulnerability databases and, for SSH / SFTP scans, the connection to the device you specify. The prefix is planned to be replaced in a future update.
 - Only scan products and systems you own or are authorised to test.
 
 ## Frequently asked questions
