@@ -4,25 +4,53 @@
 
 **No account. No cloud. No telemetry.** · [Download the latest release](../../releases/latest) · [Install and verify](#install) · [Security policy](SECURITY.md)
 
-PAXECT CRA Readiness Scanner FREE helps manufacturers of products with digital elements see where their product stands ahead of the main obligations of the CRA, which apply from 11 December 2027. It scans firmware, Linux systems, Android apps and MCP server projects **on your own Ubuntu computer** and produces a clear HTML technical report with the findings and the evidence behind them, including a software bill of materials (SBOM) and known vulnerabilities where the input type allows it.
+## In short
+
+PAXECT CRA Readiness Scanner FREE is a free program for Ubuntu. You give it a product — firmware, a Linux system, an Android app or an MCP project — and it creates a clear report that shows possible security weaknesses and the evidence behind them.
+
+- **Free to use.** No account, no sign-up.
+- **Runs on your own computer.** Your scan input is not uploaded anywhere.
+- **One report per scan**, which you can save, share and archive.
+- **Helps you prepare for the EU Cyber Resilience Act.** It does not certify your product.
 
 > **Free to use, not open source.** PAXECT FREE is distributed free of charge as an Ubuntu package with a signed checksum file, under the [PAXECT FREE License Agreement](LICENSE.md). This repository contains documentation and release files only; the source code of PAXECT itself is not published. The bundled open-source components keep their own licenses — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-**Your scan input is not uploaded anywhere.** It is analysed on your own computer inside an isolated sandbox without network access. Network access is only used to download public vulnerability databases and, for the SSH / SFTP input type, to read the device you choose to scan.
+## Who is it for?
 
----
+Manufacturers, developers and security teams who make products with digital elements and want to see where their product stands ahead of the main obligations of the CRA, which apply from 11 December 2027. You do not need to be a security expert to read the report: findings come with explanations and guidance where available.
 
-## What it scans
+## How it works
+
+1. **Install** the package on Ubuntu 24.04 (see [Install](#install)).
+2. **Open PAXECT FREE** and choose what you want to scan.
+3. **Select your input** (a file, a folder, an APK, a project or a device) and confirm that you are allowed to scan it.
+4. **Start the scan.** You see the progress live. When it is finished, you get the report. Save it wherever you want, or start a new scan.
+
+## What you can scan
 
 | Input | What PAXECT FREE does |
 | --- | --- |
-| **Firmware file** | Extracts the SquashFS file system in an isolated sandbox, builds an SBOM and matches it against known vulnerabilities. |
+| **Firmware file** | Opens the SquashFS file system in an isolated sandbox, lists the software components inside (an SBOM) and matches them against known vulnerabilities. |
 | **Linux system (folder)** | Scans an extracted Linux root file system. |
-| **Linux system (SSH / SFTP)** | Reads the file system of a device you are authorised to access and scans it locally. |
+| **Linux system (SSH / SFTP)** | Reads only explicitly allowed files from a device you are authorised to access, with read-only access, checks the device against a `known_hosts` file you provide, and scans them locally. |
 | **Android APK** | Checks the manifest, signatures, security settings and bundled components. |
-| **MCP project** | Static security analysis of a Model Context Protocol server project, including secret detection. |
+| **MCP project** | Static security analysis of a Model Context Protocol server project, including secret detection. Project code is not executed. |
 
-The result is one HTML report per scan, with the evidence it is based on, which you can save, share and archive.
+How much a scan can find depends on the input. Each report states what was and was not covered.
+
+## What you get: the report
+
+Every scan produces one HTML report that you can open in any browser. It is written to be read by people, not only by tools. The contents vary by input type; a report can include:
+
+- **Your security result** — a short summary first, with the scope stated.
+- **What needs your attention** — the findings, one by one, with an explanation of what each means.
+- **What can I do?** — concrete next steps and links to official guidance.
+- **Technical details and evidence** — the underlying data, so you can check every finding yourself.
+- **Scan identification** — a Scan ID, a Report ID and the time the report was created, so you can trace it later.
+- **Scope and limitations** — what the scan covered, and what it did not.
+- **CRA next steps** — links to official CRA guidance.
+
+Findings are signals that need review. They are not proof that your product is vulnerable.
 
 ## Requirements
 
@@ -39,7 +67,7 @@ Download these four files from the [latest release](../../releases/latest) into 
 - `SHA256SUMS.asc`
 - `PAXECT_RELEASE_SIGNING_KEY.asc`
 
-In the Files app, open the folder with the four files, right-click an empty area and choose **Open in Terminal**. Then run:
+In the Files app, open the folder with the four files, right-click an empty area and choose **Open in Terminal**. Then run the steps below. They help you verify the release signature and check that the package has not been changed, so please do not skip them. For extra assurance, confirm the signing key fingerprint through an independent PAXECT channel (see About below):
 
 ```bash
 # 1. Import the PAXECT release signing key and show its fingerprint
@@ -75,11 +103,11 @@ The first scan also downloads the vulnerability databases and can take a few min
 
 ## Update
 
-Download the new release files and verify them as above. Then install the new package; replace `<new-version>` with the version in the file name you downloaded:
+Download the new release files and verify them as above. Then install the new package; replace `VERSION` with the version in the file name you downloaded (for example `0.1.1`):
 
 ```bash
 sudo apt update
-sudo apt install ./paxect-free_<new-version>_amd64.deb
+sudo apt install ./paxect-free_VERSION_amd64.deb
 ```
 
 Your earlier reports are kept.
@@ -124,6 +152,15 @@ Yes, where the input type allows it. For firmware images, PAXECT FREE builds a s
 
 **Does PAXECT FREE make my product compliant with the Cyber Resilience Act?**
 No. It is a readiness tool: it helps you find and document technical issues early. Compliance requires a full conformity assessment.
+
+**Does it work on Windows or macOS?**
+Not in this release. PAXECT FREE 0.1.0 supports Ubuntu 24.04 LTS (amd64) only.
+
+**Do I need an internet connection?**
+For installation and for downloading the public vulnerability databases, yes. Your scan input itself is not uploaded.
+
+**Is the source code available?**
+No. PAXECT FREE is free to use but not open source. This repository contains documentation and release files only.
 
 **Can I use PAXECT FREE in my business?**
 Yes. You may use it free of charge for private and business purposes, including assessments for your own customers. Selling, redistributing or offering it as a hosted service requires written permission. See the [PAXECT FREE License Agreement](LICENSE.md).
