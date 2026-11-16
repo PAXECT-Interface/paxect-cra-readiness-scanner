@@ -1,8 +1,22 @@
-# PAXECT CRA Readiness Scanner FREE
+<p align="center">
+  <img src="docs/images/paxect-wordmark.png" alt="PAXECT" width="260">
+</p>
 
-**Free local readiness scanner for the EU Cyber Resilience Act (CRA).**
+<h1 align="center">PAXECT CRA Readiness Scanner FREE</h1>
 
-**No account. No cloud. No telemetry.** · [Download the latest release](../../releases/latest) · [Install and verify](#install) · [Security policy](SECURITY.md)
+<p align="center"><b>Free local readiness scanner for the EU Cyber Resilience Act (CRA).</b></p>
+
+<p align="center">No account &nbsp;·&nbsp; No cloud &nbsp;·&nbsp; No telemetry</p>
+
+<p align="center">
+  <a href="https://github.com/PAXECT-Interface/paxect-cra-readiness-scanner/releases/latest"><b>Download the latest release</b></a>
+  &nbsp;·&nbsp; <a href="#install">Install and verify</a>
+  &nbsp;·&nbsp; <a href="SECURITY.md">Security policy</a>
+</p>
+
+<p align="center">
+  <img src="docs/images/paxect-free-0.1.0-interface.png" alt="PAXECT FREE 0.1.0 desktop application with five scan inputs: Firmware, Linux System, Android APK, MCP Project and SSH/SFTP." width="820">
+</p>
 
 ## In short
 
