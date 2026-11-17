@@ -11,6 +11,7 @@
 <p align="center">
   <a href="https://github.com/PAXECT-Interface/paxect-cra-readiness-scanner/releases/latest"><b>Download the latest release</b></a>
   &nbsp;·&nbsp; <a href="#install">Install and verify</a>
+  &nbsp;·&nbsp; <a href="#install-with-an-ai-assistant">Install with an AI assistant</a>
   &nbsp;·&nbsp; <a href="SECURITY.md">Security policy</a>
 </p>
 
@@ -141,6 +142,51 @@ sudo apt install ./paxect-free_0.1.0_amd64.deb
 Start **PAXECT FREE** from the application menu, or run `paxect-free` in a terminal.
 
 The first scan also downloads the vulnerability databases and can take a few minutes. Later scans are faster.
+
+## Install with an AI assistant
+
+You can follow the [Install](#install) steps on your own. You can also do them together with an AI assistant. Either way, you stay in control: **you** run the commands, **you** read the output, and **you** decide whether to continue.
+
+### Two routes
+
+**On your own.** Follow [Install](#install) from top to bottom. After every command, compare what you see with what the step says it must show. If it differs, stop.
+
+**With an AI assistant.** Give the assistant this page and let it guide you step by step. It cannot download, verify or install anything for you unless you have explicitly given it that ability. Copy the output of each command back to the assistant before you go to the next step.
+
+You can start with this message:
+
+```
+I want to install PAXECT CRA Readiness Scanner FREE 0.1.0 on Ubuntu 24.04.
+Here is the README: <paste this page or its link>.
+Guide me through the Install section one command at a time.
+After each command I will paste the output. Do not let me continue
+if the output does not match what the README says it must show.
+```
+
+### What the assistant should check
+
+1. **Your system, before anything is downloaded.** Ubuntu 24.04 LTS, 64-bit (amd64). Check with `lsb_release -d` and `dpkg --print-architecture`. Other versions are not supported in this release. If yours differs, stop.
+2. **Your folder.** The terminal must be open in the folder that holds the four release files. Check with `ls`: all four files must be listed.
+3. **The fingerprint.** The output of `gpg --fingerprint` must match the fingerprint printed in this README exactly, character by character. The assistant must compare it itself and must not assume it is correct.
+4. **The signature.** `gpg --verify` must say `Good signature`. The warning that the key is "not certified with a trusted signature" is expected. It does not replace the fingerprint check.
+5. **The checksum.** `sha256sum -c SHA256SUMS` must show `paxect-free_0.1.0_amd64.deb: OK`.
+6. **The install.** Only the two `sudo` commands in step 3 of [Install](#install) (`apt update` and `apt install`) need administrator rights. Read what apt wants to install before you confirm. If apt reports errors or unmet dependencies, stop and report them.
+7. **Only the documented commands.** The assistant should use only the commands in the Install section. If something goes wrong, it must first explain the error. It must not suggest other downloads, changed security settings or a different source for the files.
+
+### Stop and do not install if
+
+- the fingerprint differs in any character;
+- `gpg --verify` does not say `Good signature`;
+- `sha256sum -c` does not say `OK`;
+- the files did not come from the [official release page](https://github.com/PAXECT-Interface/paxect-cra-readiness-scanner/releases/latest);
+- you are asked to turn off a security check, to run a command you do not understand, or to enter a password anywhere other than the `sudo` prompt.
+
+### What an assistant can and cannot tell you
+
+- A matching signature and checksum show that the files are the ones published with this key, provided the key is authentic. They do not prove that any piece of software is free of faults.
+- Whether to trust PAXECT is your decision. An assistant can explain the steps and what each result means. It cannot guarantee that the software is safe, and different assistants may judge it differently.
+- Do not share passwords, recovery keys or private files with an assistant. The install steps do not need them.
+- If something looks wrong, ask the assistant to stop, and contact PAXECT (see [About](#about)) or report it as described in [SECURITY.md](SECURITY.md).
 
 ## Update
 
