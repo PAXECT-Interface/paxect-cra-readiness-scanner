@@ -102,14 +102,23 @@ Sample reports from test inputs, not assessments of real products. Click an imag
 
 ## Install
 
-Download these four files from the [latest release](../../releases/latest) into one folder:
+Before you download anything, open a terminal and check your system:
+
+```bash
+lsb_release -d
+dpkg --print-architecture
+```
+
+It must say **Ubuntu 24.04** and **amd64**. Stop if it does not.
+
+Download these four files from the [latest release](../../releases/latest) into one folder (the standard Downloads folder is fine):
 
 - `paxect-free_0.1.0_amd64.deb`
 - `SHA256SUMS`
 - `SHA256SUMS.asc`
 - `PAXECT_RELEASE_SIGNING_KEY.asc`
 
-In the Files app, open the folder with the four files, right-click an empty area and choose **Open in Terminal**. Then run the steps below. They help you verify the release signature and check that the package has not been changed, so please do not skip them. For extra assurance, confirm the signing key fingerprint through an independent PAXECT channel (see About below):
+In the Files app, open the folder with the four files, right-click an empty area and choose **Open in Terminal**. Or, if you used the standard Downloads folder, run `cd ~/Downloads` in a terminal. Check with `ls` that all four files are listed. Then run the steps below. They help you verify the release signature and check that the package has not been changed, so please do not skip them. For extra assurance, confirm the signing key fingerprint through an independent PAXECT channel (see About below):
 
 ```bash
 # 1. Import the PAXECT release signing key and show its fingerprint
@@ -138,6 +147,8 @@ gpg may also warn that the key is not certified with a trusted signature. That i
 sudo apt update
 sudo apt install ./paxect-free_0.1.0_amd64.deb
 ```
+
+apt may ask whether you want to continue (`[Y/n]`). Read what it will install first; then press Enter or type `Y`. It may also print a note that the download was done "unsandboxed" because the user `_apt` cannot read the file in your home folder. That note alone does not mean the installation failed. Do not change folder permissions to make it disappear. If apt reports an error, stop.
 
 Start **PAXECT FREE** from the application menu, or run `paxect-free` in a terminal.
 
