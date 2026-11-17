@@ -66,6 +66,33 @@ Every scan produces one HTML report that you can open in any browser. It is writ
 
 Findings are signals that need review. They are not proof that your product is vulnerable.
 
+### Example reports
+
+Sample reports from test inputs, not assessments of real products. Click an image to enlarge it.
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="docs/images/report-01-result.png"><img src="docs/images/report-01-result.png" alt="PAXECT FREE HTML report summary: 'Your security result' with 83 observations and 2 topics to review."></a>
+      <br><sub><b>A plain-language result comes first,</b> with the scope stated. (Linux test input)</sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="docs/images/report-02-finding.png"><img src="docs/images/report-02-finding.png" alt="PAXECT FREE HTML report finding 'Possible exposed access key' with the steps under 'What can I do?'."></a>
+      <br><sub><b>Each finding explains what it means</b> and what you can do next. (test project with a fake token)</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="docs/images/report-03-traceability.png"><img src="docs/images/report-03-traceability.png" alt="PAXECT FREE HTML report executive summary and scan identification showing Scan ID, Report ID and creation time."></a>
+      <br><sub><b>Every report carries a Scan ID, a Report ID</b> and the time it was created. (test project)</sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="docs/images/report-04-coverage.png"><img src="docs/images/report-04-coverage.png" alt="PAXECT FREE HTML report executive summary for a Linux device via SSH/SFTP, marked partial coverage, with key limitations stated."></a>
+      <br><sub><b>Coverage and key limitations are stated up front.</b> (SSH / SFTP test device)</sub>
+    </td>
+  </tr>
+</table>
+
 ## Requirements
 
 - **Ubuntu 24.04 LTS** (desktop), 64-bit (amd64)
